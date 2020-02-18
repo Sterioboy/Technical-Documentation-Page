@@ -1,0 +1,92 @@
+body {
+    margin: 0px;
+    color: #4d4e53;
+    background-color: #ffffff;
+    font-family: "Open Sans", Arial, sans-serif;
+    line-height: 1.5;
+}
+
+/* Nav-bar */
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 20%;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+    margin: 16px 0px;
+}
+
+li a:hover {
+    background-color: gray;
+}
+
+/* body */
+#main-doc {
+    margin-left: 21%;
+    padding: 1px 16px;
+}
+
+.main-section {
+    margin-top: 40px;
+}
+
+li code {
+    color: red;
+}
+
+/* Example */
+#pine {
+    width: 125px;
+    height: 125px;
+}
+
+.main-section img {
+    /* 2:1 */
+    width: 700px;
+    height: 350px;
+    align-self: center;
+    justify-self: center;
+    box-shadow: 20px 15px 0px 0px rgba(77,78,83,1);
+    border: 1px solid #f1f1f1;
+}
+
+#container {
+    display: grid;
+    flex-direction: row;
+    grid-template-rows: 1fr;
+    grid-template-columns: 35% 1fr;
+}
+
+code {
+    background-color: #f1f1f1;
+}
+
+/* [Resp.] */
+@media screen and (max-width: 770px) {
+    #nav-bar {
+        display: none;
+    }
+    #main-doc {
+        margin-left: 1%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    #container {
+        display: none;
+    }
+    .main-section img {
+        width: 70%;
+        height: 70%;
+    }
+}

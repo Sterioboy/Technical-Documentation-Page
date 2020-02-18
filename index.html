@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--CSS doc-->
+    <link rel="stylesheet" href="default.css">
+
+    <!--Font Awesome Script-->
+    <script src="https://kit.fontawesome.com/13bcfb69b0.js" crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <!-- User story 8-14 -->
+        <nav id="nav-bar">
+            <ul>
+                <li class="nav-link"><a href="#introduction">Introduction</a></li>
+                <li class="nav-link"><a href="#example">Example of a Pine script</a></li>
+                <li class="nav-link"><a href="#execution">Execution model of Pine scripts</a></li>
+                <li class="nav-link"><a href="#series">Series</a></li>
+                <li class="nav-link"><a href="#understanding">Understanding scripts</a></li>
+                <li class="nav-link"><a href="#editor">Pine Editor</a></li>
+                <li class="nav-link"><a href="#next">Where to go from here?</a></li>
+            </ul>
+        </nav> 
+    </header>
+    <main id="main-doc">
+        <section class="main-section" id="header_name">
+            <header id="introduction">
+                <h1>Introduction</h1>
+            </header>
+            <p><strong>TradingView has designed its own scripting language called Pine Script. It allows users to create custom indicators and run them on our servers - <a href="https://www.tradingview.com/pine-script-docs/en/v4/Introduction.html" target="_blank">Official Guide</a>.</strong></p>
+            <!-- at least 5 li items total -->
+        </section>
+        <section class="main-section">
+            <header id="example">
+                <h2>Example</h2>
+            </header>
+            <p>Let’s look at the implementation of the MACD indicator in Pine:</p>
+            <div id="container">
+                <code>
+                    //@version=4<br>
+                    >>> study("MACD")<br>
+                    >>> fast = 12, slow = 26<br>
+                    >>> fastMA = ema(close, fast)<br>
+                    >>> slowMA = ema(close, slow)<br>
+                    >>> macd = fastMA - slowMA<br>
+                    >>> signal = sma(macd, 9)<br>
+                    >>> plot(macd, color=color.blue)<br>
+                    >>> plot(signal, color=color.orange)<br>
+                </code>
+                <img id="pine" src="img.png" alt="Pine Script Logo">
+            </div>
+            <ol>
+                <li>Line 1: <code>//@version=4</code></li>
+                <p>This is a comment containing a compiler directive that tells the compiler the script will use version 4 of Pine.</p>
+                <li>Line 2: <code>study("MACD")</code></li>
+                <p>Defines the name of the script that will appear on the chart as “MACD”.</p>
+                <li>Line 3: <code>fast = 12, slow = 26</code></li>
+                <p>Defines two integer variables: <code>fast</code> and <code>slow</code>.</p>
+                <li>Line 4: <code>fastMA = ema(close, fast)</code></li>
+                <p>Defines the variable <code>fastMA</code>, containing the result of the EMA calculation (Exponential Moving Average) with a length equal to <code>fast</code> (12), on the <code>close</code> series, i.e., the closing price of bars.</p>
+                <li>Line 5: <code>slowMA = ema(close, slow)</code></li>
+                <p>Defines the variable <code>slowMA</code>, containing the result of the EMA calculation with a length equal to <code>slow</code> (26), from <code>close</code>.</p>
+                <li>Line 6: <code>macd = fastMA - slowMA</code></li>
+                <p>Defines the variable <code>macd</code> as the difference between the two EMAs.</p>
+                <li>Line 7: <code>signal = sma(macd, 9</code>)</li>
+                <p>Defines the variable <code>signal</code> as a smoothed value of <code>macd</code> using the SMA algorithm (Simple Moving Average) with a length of 9.</p>
+                <li>Line 8: <code>plot(macd, color=color.blue)</code></li>
+                <p>Calls the <code>plot</code> function to output the variable <code>macd</code> using a blue line.</p>
+                <li>Line 9: <code>plot(signal, color=color.orange)</code></li>
+                <p>Calls the <code>plot</code> function to output the variable <code>signal</code> using an orange line.</p>
+            </ol>
+
+            <h3>Example</h3>
+            <img id="apple_ex" src="img_1.png" alt="MACD Example">
+        </section>
+        <section class="main-section">
+            <header id="execution">
+                <h2>Execution model of Pine scripts</h2>
+            </header>
+            <p>A Pine script is not like many normal programs that execute once and then stop. In the Pine runtime environment, a script runs in the equivalent of an invisible loop where it is executed once on each historical bar. When execution reaches the last, real-time bar, the script executes once every time a price or volume change is detected, then one final time when the real-time bar closes and becomes a historical bar.</p>
+            <p><a href="https://www.tradingview.com/pine-script-docs/en/v4/language/Execution_model.html" target="_blank">Execution model</a></p>
+        </section>
+        <section class="main-section">
+            <header id="#series">
+                <h2>Series</h2>
+            </header>
+            <p>The main data type used in Pine scripts is called a <strong>series</strong>. It is a continuous list of values that stretches back in time from the current bar and where one value exists for each bar. While this structure may remind many of an array, a Pine series is totally different and thinking in terms of arrays will be detrimental to understanding this key Pine concept. You can read about series <a href="https://www.tradingview.com/pine-script-docs/en/v4/language/Type_system.html#series" target="_blank">here</a>.</p>
+        </section>
+        <section class="main-section">
+            <header id="understanding">
+                <h2>Understanding scripts</h2>
+            </header>
+            <p>If you intend to write Pine scripts of any reasonable complexity, a good comprehension of both the Pine execution model and series is essential in understanding how Pine scripts work. If you have never worked with data organized in series before, you will need practice in putting them to work for you. When you familiarize yourself with Pine’s fundamental concepts, you will discover that by combining the use of series with our built-in functions designed to efficiently process series information, much can be accomplished in very few lines of Pine code.</p>
+        </section>
+        <section class="main-section">
+            <header id="editor">
+                <h2>Pine Editor</h2>
+            </header>
+            <p>The Pine Editor is where you will be working on your scripts. To open it, click on the Pine Editor tab at the bottom of your TradingView chart. This will open up the editor’s window.</p>
+        </section>
+        <section class="main-section">
+            <header id="next">
+                <h2>Where to go from here?</h2>
+            </header>
+            <p>The fastest way to learn a programming language is to read about key concepts and try them out with real code. As we’ve just done, copy this documentation’s examples in the editor and play with them. Explore! You won’t break anything.</p>
+            <p>You will also find examples of Pine scripts in the editor’s New dropdown menu and in TradingView’s extensive Public Library of <a href="https://www.tradingview.com/scripts/" target="_blank">scripts</a> which contains thousands of open source Pine scripts. Enjoy and welcome to Pine!</p>
+            <h3>Reference</h3>
+            <h4>All the documentation in this page is taken from - <a href="https://www.tradingview.com/pine-script-docs/en/v4/Introduction.html" target="_blank">Official Guide</a>.</h4>
+        </section>
+    </main>    
+</body>
+</html>
